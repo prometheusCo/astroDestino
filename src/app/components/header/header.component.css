@@ -1,0 +1,20 @@
+    .sign-card.active {
+      filter: grayscale(0);
+      opacity: 1;
+    }
+  
+
+    header{
+          z-index: 99999!important;
+         position: relative!important;
+    }
+
+    header path{
+      fill: #0f0a13!important;
+       border: 0px;
+    }
+
+    #waves{
+          width: 130%!important;
+          margin-top: -25px!important;
+    }

@@ -1,0 +1,27 @@
+ <div class="universe-container">
+  
+  <!-- Capa de estrellas fijas con gradientes radiales -->
+      <div class="fixed-star-bg"></div>
+      
+      <!-- Efecto de nebulosa central -->
+      <div class="nebula"></div>
+      
+      <!-- Capa de estrellas parpadeantes dinámicas -->
+      <div class="twinkling">
+        @for (star of stars(); track $index) {
+          <div 
+            class="star"
+            [style.left.%]="star.x"
+            [style.top.%]="star.y"
+            [style.width.px]="star.size"
+            [style.height.px]="star.size"
+            [style.--duration]="star.duration"
+          ></div>
+        }
+      </div>
+
+      <!-- Contenedor para el contenido de la app (opcional) -->
+      <div class="relative z-10">
+        <ng-content></ng-content>
+      </div>
+    </div>

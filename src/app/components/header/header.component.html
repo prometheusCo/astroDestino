@@ -1,0 +1,49 @@
+
+    <!-- Header Component Wrapper -->
+    <header class="header-wrapper bg-[#121212] overflow-hidden">
+      
+      <!-- Slider de Signos -->
+      <div 
+        #sliderContainer
+        class="relative w-full h-[200px] flex items-center z-20 cursor-grab active:cursor-grabbing touch-none"
+        (mousedown)="dragStart($event)"
+        (touchstart)="dragStart($event)"
+      >
+        <!-- Selector Central Estético -->
+        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[110px] h-[150px] border-[1.5px] border-white/30 rounded-[1.5rem] pointer-events-none z-40 bg-[radial-gradient(circle,rgba(255,255,255,0.08)_0%,transparent_80%)]"></div>
+
+        <!-- Contenedor del Movimiento -->
+        <div 
+          #slider 
+          class="flex gap-[1.5rem] py-8 will-change-transform"
+          [style.transform]="'translateX(' + currentTranslate() + 'px)'"
+          [style.transition]="isDragging() ? 'none' : 'transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1)'"
+        >
+          @for (sign of extendedSigns(); track $index) {
+            <div 
+              class="sign-card flex-shrink-0 w-[90px] flex flex-col items-center transition-all duration-[0.25s] ease-[cubic-bezier(0.4,0,0.2,1)]"
+              [class.active]="activeIndex() === $index"
+              [class.grayscale]="activeIndex() !== $index"
+              [class.opacity-40]="activeIndex() !== $index"
+              [class.scale-125]="activeIndex() === $index"
+              [class.scale-95]="activeIndex() !== $index"
+              [class.text-white]="activeIndex() === $index"
+              [class.text-gray-400]="activeIndex() !== $index"
+            >
+              <svg class="w-10 h-10 mb-2 fill-none stroke-current stroke-[1.5]" viewBox="0 0 24 24">
+                <path [attr.d]="sign.path"/>
+              </svg>
+              <span class="text-[9px] uppercase tracking-tighter font-semibold">{{ sign.name }}</span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Separador de Ondas (Wave Divider) -->
+      <div class="relative w-full h-[60px] bg z-10 -mt-1" id="waves">
+        <svg class="block w-full h-full scale-y-[1.1] origin-top" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path fill="#0a0a0a" d="M0,0V40 Q300,80 600,40 T1200,40 V120 H0 Z" />
+        </svg>
+      </div>
+    </header>
+  
