@@ -68,7 +68,7 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
       transition: opacity 0.2s ease;
-      font-size: 0.85rem !important;
+      font-size: 0.75rem !important;
     }
 
     .save-button:hover:not(:disabled) {
