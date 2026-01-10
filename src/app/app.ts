@@ -10,7 +10,7 @@ import { DrawerComponent } from './components/drawer/drawer.component';
     RouterOutlet,
     HeaderComponent,
     UniverseComponent,
-    DrawerComponent
+    DrawerComponent,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'

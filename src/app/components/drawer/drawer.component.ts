@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenav } from '@angular/material/sidenav';
+import { UserFormComponent } from '../forms/user/user.component';
 
 @Component({
 
@@ -12,6 +13,7 @@ import { MatSidenav } from '@angular/material/sidenav';
     MatSidenavModule,
     MatButtonModule,
     MatSidenav,
+    UserFormComponent
   ],
   templateUrl: 'drawer.component.html',
   styleUrls: ['drawer.component.css', '../../app.css'],

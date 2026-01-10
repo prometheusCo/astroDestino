@@ -1,0 +1,63 @@
+ <div class="main-viewport">
+      <div class="profile-card">
+        
+        <!-- Encabezado Minimalista -->
+        <header class="header" id="userHeader">
+          <div class="icon-container">
+            <mat-icon>auto_awesome</mat-icon>
+          </div>
+          <h1>Configuración de Perfil</h1>
+        </header>
+
+        <div class="form-container">
+          <!-- Fecha de Nacimiento -->
+          <mat-form-field appearance="fill" class="full-width custom-dark-field">
+            <mat-label> <span class="mini  tracking-tighter font-semibold">Fecha de Nacimiento </span></mat-label>
+            <input matInput [matDatepicker]="picker" [value]="birthdate()" (dateChange)="birthdate.set($event.value)" readonly>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <!-- Profesión (Select) -->
+          <mat-form-field appearance="fill" class="full-width custom-dark-field">
+            <mat-label><span class="mini  tracking-tighter font-semibold">Profesión</span></mat-label>
+            <mat-select [value]="profession()" (selectionChange)="profession.set($event.value)">
+              @for (prof of professions; track prof) {
+                <mat-option [value]="prof">{{ prof }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <!-- Género (Select) -->
+          <mat-form-field appearance="fill" class="full-width custom-dark-field">
+            <mat-label><span class="mini  tracking-tighter font-semibold">Género</span></mat-label>
+            <mat-select [value]="gender()" (selectionChange)="gender.set($event.value)">
+              @for (g of genders; track g) {
+                <mat-option [value]="g">{{ g }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <!-- Botón de acción -->
+        <div class="actions">
+          <button mat-flat-button 
+                  [disabled]="!isValid()" 
+                  (click)="saveUser()"
+                  class="save-button">
+            Guardar Cambios
+          </button>
+        </div>
+
+        <!-- Notificación discreta de éxito -->
+        @if (saved()) {
+          <div class="success-message">
+            <mat-icon>check_circle</mat-icon>
+
+            <span class="tracking-tighter font-semibold"> Cambios guardados</span>
+            
+          </div>
+        }
+      </div>
+    </div>
+  

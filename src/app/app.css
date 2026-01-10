@@ -5,3 +5,45 @@
 .op-9{
       opacity: 0.9;
 }
+
+ h1 {
+      font-size: 1.15rem; /* Ligeramente menor para minimalismo */
+      font-weight: 500;
+      margin: 0;
+      letter-spacing: -0.025em;
+    }
+
+
+   .mat-mdc-select {
+
+      border-radius: 10px !important;
+    }
+
+    .form-container{
+      zoom: 90%!important;
+    }
+
+
+.mini{
+      line-height: normal;
+      font-size: 13px;
+      letter-spacing: 0.14rem;
+
+}
+
+.mini-s{
+        font-size: 12px!important;
+}
+
+
+.mat-mdc-form-field{
+      height: 70px;
+      border-radius: 0px!important;
+}
+
+
+/*zoom overrides*/
+.drawer-container{
+    zoom: 98%!important;
+}
+
