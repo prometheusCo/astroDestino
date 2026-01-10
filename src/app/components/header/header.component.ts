@@ -1,5 +1,8 @@
 import { Component, ElementRef, ViewChild, AfterViewInit, HostListener, signal, effect, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+
 
 interface Sign {
   id: string;
@@ -11,7 +14,11 @@ interface Sign {
 @Component({
 
   selector: 'app-header',
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatButtonModule
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: 'header.component.html',
   styleUrls: ['header.component.css']
@@ -20,9 +27,10 @@ interface Sign {
 
 export class HeaderComponent implements AfterViewInit {
 
-
   @ViewChild('slider') slider!: ElementRef;
   @ViewChild('sliderContainer') container!: ElementRef;
+
+  isMenuOpen = false;
 
   private baseSigns: Sign[] = [
 

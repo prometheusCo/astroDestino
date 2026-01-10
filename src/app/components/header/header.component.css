@@ -18,3 +18,61 @@
           width: 130%!important;
           margin-top: -25px!important;
     }
+
+    .bg {
+    /*  background-color: #0a0a0a!important;*/
+    background-color: #121212ec!important;
+    }
+
+
+
+/* Contenedor del botón */
+.hamburger-button {
+  
+  width: 40px !important;
+  height: 40px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 10px;
+  left: 10px;
+}
+
+/* Contenedor de las líneas */
+.hamburger-lines {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  transition: transform 0.4s ease-in-out;
+}
+
+/* Estilo general de cada línea */
+.line {
+  display: block;
+  height: 2px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: currentColor; /* Usa el color del texto actual */
+  transition: all 0.3s ease-in-out;
+}
+
+/* --- ANIMACIONES AL ABRIR --- */
+
+/* Línea superior: rota 45 grados */
+.open .line1 {
+  transform: translateY(8px) rotate(45deg);
+}
+
+/* Línea media: desaparece */
+.open .line2 {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+/* Línea inferior: rota -45 grados */
+.open .line3 {
+  transform: translateY(-8px) rotate(-45deg);
+}
