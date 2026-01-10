@@ -1,0 +1,70 @@
+/* Contenedor principal */
+.drawer-container {
+  height: 100vh;
+  width: 100%;
+}
+
+.side-panel {
+  width: 260px;
+  background-color: #ffffff;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+/* Navbar superior */
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  height: 64px;
+  background-color: #3f51b5;
+  color: white;
+  gap: 15px;
+}
+
+
+
+/*Menu stuff*/
+
+/* Contenedor del botón */
+.hamburger-button {
+  
+  width: 40px !important;
+  height: 40px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 10px;
+  left: 10px;
+}
+
+/* Contenedor de las líneas */
+.hamburger-lines {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  transition: transform 0.4s ease-in-out;
+}
+
+/* Estilo general de cada línea */
+.line {
+  display: block;
+  height: 2px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: currentColor; /* Usa el color del texto actual */
+  transition: all 0.3s ease-in-out;
+}
+
+#menuBtn{
+    position: fixed!important;
+    z-index: 999999;
+}
+
+
+mat-sidenav{
+  width: 85vw!important;
+  border-radius:0px;
+}

@@ -2,6 +2,8 @@ import { Component, ElementRef, ViewChild, AfterViewInit, HostListener, signal, 
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { CoreMethods } from '../../services/core/methods/core-methods'
+import { MatSidenav } from '@angular/material/sidenav';
 
 
 interface Sign {
@@ -21,7 +23,7 @@ interface Sign {
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: 'header.component.html',
-  styleUrls: ['header.component.css']
+  styleUrls: ['header.component.css', '../../app.css']
 
 })
 
@@ -29,6 +31,13 @@ export class HeaderComponent implements AfterViewInit {
 
   @ViewChild('slider') slider!: ElementRef;
   @ViewChild('sliderContainer') container!: ElementRef;
+
+  constructor(public coreMethods: CoreMethods) {
+
+    effect(() => {
+      this.checkActive();
+    }, { allowSignalWrites: true });
+  }
 
   isMenuOpen = false;
 
@@ -58,13 +67,7 @@ export class HeaderComponent implements AfterViewInit {
   private prevTranslate = 0;
   private readonly cardWidth = 114;
 
-  constructor() {
 
-    effect(() => {
-      this.checkActive();
-    }, { allowSignalWrites: true });
-
-  }
 
   ngAfterViewInit() {
     this.resetPosition();
@@ -157,4 +160,9 @@ export class HeaderComponent implements AfterViewInit {
   onResize() {
     this.resetPosition();
   }
+
+
+
 }
+
+

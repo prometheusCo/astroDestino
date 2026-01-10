@@ -1,0 +1,24 @@
+<mat-sidenav-container class="drawer-container" id="drawer">
+
+  <mat-sidenav  #drawer mode="over" class="bg op-9" >
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <button mat-icon-button id="menuBtn" class="hamburger-button bg" (click)="this.toggleMenu()" >
+           
+           <div class="hamburger-lines">
+               <span class="line line1"></span>
+               <span class="line line2"></span>
+               <span class="line line3"></span>
+           </div>
+
+      </button>
+
+    <main class="content">
+        <ng-content></ng-content>
+    </main>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

@@ -12,7 +12,7 @@ interface Star {
   selector: 'app-universe',
   imports: [CommonModule],
   templateUrl: 'universe.component.html',
-  styleUrls: ['universe.component.css'],
+  styleUrls: ['universe.component.css', '../../app.css'],
 })
 
 export class UniverseComponent implements OnInit {
