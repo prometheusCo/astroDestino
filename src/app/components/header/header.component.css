@@ -72,3 +72,8 @@
     padding-bottom: 30px;
 
 }
+
+
+#sliderContainer> .absolute{
+    border-width: 0.17rem
+}
