@@ -1,5 +1,5 @@
 .bg{
-  background-color: #37393bdb;
+  background-color: #37393b;
 }
 
 #waves path{
@@ -71,3 +71,10 @@
     z-index: 99999;
      margin-top: -35px;
  }
+
+
+
+ mat-sidenav-content{
+  overflow: hidden;
+ }
+
