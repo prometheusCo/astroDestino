@@ -1,5 +1,21 @@
 .bg{
-  background-color: #121212!important;
+  background-color: #37393bdb;
+}
+
+#waves path{
+      fill: #302c38 !important;
+}
+
+.bg-dark{
+  background-color:#000000ed !important
+}
+
+.bg-purple{
+   color: #302c38!important;
+}
+
+.bg-purple-dark{
+   color: #2f204d!important;
 }
 
 .op-9{
@@ -42,13 +58,16 @@
 }
 
 
-/*zoom overrides*/
-.drawer-container{
-    zoom: 98%!important;
-}
-
-
 
 .mdc-button__labell{
   font-size: 12px!important;
 }
+
+
+#waves{
+    width: 130% !important;
+    display: flex;
+    position: absolute;
+    z-index: 99999;
+     margin-top: -35px;
+ }

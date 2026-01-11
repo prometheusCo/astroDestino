@@ -2,9 +2,7 @@ import { Component, ElementRef, ViewChild, AfterViewInit, HostListener, signal, 
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { CoreMethods } from '../../services/core/methods/core-methods'
-import { MatSidenav } from '@angular/material/sidenav';
-
+import { UniverseComponent } from '../universe/universe.component'
 
 interface Sign {
   id: string;
@@ -19,7 +17,8 @@ interface Sign {
   imports: [
     CommonModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    UniverseComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: 'header.component.html',
@@ -32,7 +31,7 @@ export class HeaderComponent implements AfterViewInit {
   @ViewChild('slider') slider!: ElementRef;
   @ViewChild('sliderContainer') container!: ElementRef;
 
-  constructor(public coreMethods: CoreMethods) {
+  constructor() {
 
     effect(() => {
       this.checkActive();

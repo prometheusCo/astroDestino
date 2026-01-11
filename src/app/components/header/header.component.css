@@ -9,24 +9,7 @@
          position: relative!important;
     }
 
-    header path{
-      fill: #0f0a13!important;
-       border: 0px;
-    }
-
-    #waves{
-          width: 130%!important;
-          margin-top: -25px!important;
-    }
-
-    .bg {
-    /*  background-color: #0a0a0a!important;*/
-    background-color: #121212ec!important;
-    }
-
-
-
-    
+ 
 /* --- ESTILO BOTÓN HAMBURGUESA --- */
 .hamburger {
   width: 40px !important;
@@ -77,11 +60,15 @@
   margin-bottom: 15px;
 }
 
-
-#sliderContainer
-{
-  margin-top: 25px!important;
-  zoom: 100%!important
+#sliderContainer[_ngcontent-ng-c3943606533] {
+    margin-bottom: 25px;
+    zoom: 90% !important;
+    padding-left: 5%;
 }
 
+.header-wrapper
+{
+    padding-top: 45px;
+    padding-bottom: 30px;
 
+}
