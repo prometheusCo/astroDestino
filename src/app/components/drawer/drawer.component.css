@@ -54,11 +54,13 @@
   height: 2px;
   width: 100%;
   border-radius: 10px;
-  background-color: currentColor; /* Usa el color del texto actual */
+  background-color: grey; /* Usa el color del texto actual */
   transition: all 0.3s ease-in-out;
 }
 
 #menuBtn{
+    padding: 10px!important;
+    background-color: #302c38!important;
     position: fixed!important;
     z-index: 999999;
 }
