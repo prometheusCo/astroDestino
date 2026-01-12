@@ -10,6 +10,10 @@
   background-color:#1e1f20 !important;
 }
 
+.bg-dark-2{
+  background-color: #000000ea !important;
+}
+
 .bg-purple{
    color: #302c38!important;
 }
@@ -94,6 +98,9 @@ mat-sidenav{
 
 mat-card-title,
 input,
+::ng-deep .mat-calendar-body-cell-content,
+::ng-deep .mat-calendar-body-label,
+::ng-deep .mdc-button__label,
 p{
       color: #e3e3e3b3!important;
     line-height: 23px!important;
@@ -104,4 +111,21 @@ p{
 .mat-mdc-unelevated-button:not(:disabled){
   background: #3f2e3f!important;
   border: 0.1rem solid #ffffff59;
+}
+
+
+
+::ng-deep .mat-calendar,
+::ng-deep .mat-mdc-select-panel,
+::ng-deep .mat-datepicker-content.mat-primary {
+  
+    background-color: #23292f !important;
+    border-radius: 15px;
+
+}
+
+ 
+.mat-calendar-content {
+    padding: 0 25px;
+    outline: aquamarine;
 }

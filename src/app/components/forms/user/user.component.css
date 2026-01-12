@@ -20,7 +20,7 @@
       height: 56px;
       border-radius: 16px;
       background-color: rgba(255, 255, 255, 0.05);
-      color: #a3a3a3;
+      color: #ffffffc9;
       margin-bottom: 16px;
     }
 
@@ -104,20 +104,10 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Estilos globales para los dropdowns del select */
-    ::ng-deep .mat-mdc-select-panel {
-      background-color: #171717 !important;
-      border: 1px solid #404040 !important;
-    }
-
     ::ng-deep .mat-mdc-option {
       color: #d4d4d4 !important;
       min-height: 40px !important; /* Opciones más compactas */
       font-size: 0.9rem !important;
-    }
-
-    ::ng-deep .mat-mdc-option:hover:not(.mdc-list-item--disabled) {
-      background-color: #262626 !important;
     }
 
     ::ng-deep .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
@@ -132,3 +122,8 @@
    .icon-container{
     background-color: transparent!important;
    }
+
+
+::ng-deep    .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::after{
+       border:0px!important;
+  }

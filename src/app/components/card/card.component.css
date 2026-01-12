@@ -28,3 +28,8 @@ mat-card-title {
 .mat-mdc-card-header{
     align-items: center!important;
 }
+
+
+::ng-deep .mat-mdc-card-header {
+    padding: 10px 16px 0!important;
+}
