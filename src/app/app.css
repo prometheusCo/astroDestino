@@ -130,3 +130,13 @@ p{
     padding: 0 25px;
     outline: aquamarine;
 }
+
+::ng-deep .swal2-container.swal2-center.swal2-backdrop-show{
+    overflow-y: auto;
+    background: #80808094!important;
+}
+
+
+::ng-deep .swal2-container.swal2-center.swal2-backdrop-show>div{
+      border-radius: 15px;
+}

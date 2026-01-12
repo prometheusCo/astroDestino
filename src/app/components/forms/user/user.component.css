@@ -127,3 +127,13 @@
 ::ng-deep    .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::after{
        border:0px!important;
   }
+
+
+ ::ng-deep   .profile-card #userHeader 
+ .mat-mdc-card-avatar.zodiac-avatar  {
+   
+    background-color:#2f204d!important;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+}

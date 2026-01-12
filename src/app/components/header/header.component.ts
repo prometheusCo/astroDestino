@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, AfterViewInit, HostListener, signal, effect, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, HostListener, signal, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,7 +20,6 @@ interface Sign {
     MatButtonModule,
     UniverseComponent
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: 'header.component.html',
   styleUrls: ['header.component.css', '../../app.css']
 

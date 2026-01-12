@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -6,25 +8,55 @@ import { Injectable } from '@angular/core';
 
 export class ApiService {
 
+  constructor(private http: HttpClient) { }
+
 
   cards: any[] = [
     {
       title: 'Enero del 2026',
-      text: ''
+      mode: 'monthly',
+      text: '',
+      hidden: true,
     },
     {
       title: 'Semana 12 - 19',
-      text: ''
+      mode: 'weekly',
+      text: '',
+      hidden: true,
     },
     {
       title: 'Hoy lunes 12',
-      text: ''
+      mode: 'daily',
+      text: '',
+      hidden: true,
     },
   ];
 
 
-  getCards() {
-    return this.cards;
+  getKey() {
+    return "key=sdfjo0s0orjaw9phiads7f6d6f76aq3rufcwf4y7&playStoreKey=sajfdppadajsd3254jtjfv144sadasfge55f"
   }
+
+  async getCard(mode: string, sex: string, job: string, sign: string) {
+
+    const baseUrl = `https://japgcv.es/portfolio/astroDestino/server/api.php?${this.getKey()}`;
+
+    const url =
+      `${baseUrl}` +
+      `&sex=${encodeURIComponent(sex)}` +
+      `&job=${encodeURIComponent(job)}` +
+      `&sign=${encodeURIComponent(sign)}` +
+      `&mode=${encodeURIComponent(mode)}`;
+
+    try {
+      const data = await firstValueFrom(this.http.get<any>(url));
+      const text = data?.choices?.[0]?.message?.content ?? "";
+      return text;
+    } catch (err) {
+      console.error("HTTP failed:", err);
+      throw err;
+    }
+  }
+
 
 }

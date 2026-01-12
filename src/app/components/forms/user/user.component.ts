@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, signal, computed } from '@angular/core';
+import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -8,6 +8,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { StorageService } from '../../../services/storage/storage';
+
 @Component({
   selector: 'app-user',
   imports: [
@@ -28,6 +30,9 @@ import { MatIconModule } from '@angular/material/icon';
 
 export class UserFormComponent {
 
+  constructor(
+    private storage: StorageService,
+  ) { }
 
   // Estado con Signals
   birthdate = signal<Date | null>(null);
@@ -36,24 +41,65 @@ export class UserFormComponent {
   saved = signal<boolean>(false);
 
   // Catálogos
-  readonly professions = ['Ingeniero/a', 'Médico/a', 'Docente', 'Arquitecto/a', 'Diseñador/a', 'Otro'];
-  readonly genders = ['Masculino', 'Femenino', 'No binario', 'Privado'];
+  readonly professions = [
+
+    'Abogado/a',
+    'Administrador/a',
+    'Arquitecto/a',
+    'Contador/a',
+    'Desarrollador/a',
+    'Diseñador/a',
+    'Docente',
+    'Economista',
+    'Enfermero/a',
+    'Ingeniero/a',
+    'Médico/a',
+    'Marketing Digital',
+    'Periodista',
+    'Psicólogo/a',
+    'Recursos Humanos',
+    'Veterinario/a',
+    'Camarero/a',
+    'Otro'
+  ];
+
+  readonly genders = ['Masculino', 'Femenino'];
 
   // Validación
   isValid = computed(() => !!this.birthdate() && !!this.profession() && !!this.gender());
 
+  forbidenSet = new Set([
+    'Camarero/a',
+    'Enfermero/a',
+    'Médico/a',
+  ]);
+
+  filter(professionsSet: any, professionToFind: string) {
+
+    if (professionsSet.has(professionToFind))
+      return "null";
+
+    return professionToFind;
+  }
+
   saveUser() {
+
     if (this.isValid()) {
+
       const data: UserProfile = {
+
         birthdate: this.birthdate(),
-        profession: this.profession(),
+        profession: this.filter(this.forbidenSet, this.profession()),
         gender: this.gender()
+
       };
 
-      console.log('Datos guardados:', data);
-
       this.saved.set(true);
-      setTimeout(() => this.saved.set(false), 3000);
+      setTimeout(() => this.saved.set(false), 2000);
+
+      this.storage.setData("userData", data);
+      location.reload();
+
     }
   }
 }
