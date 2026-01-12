@@ -93,7 +93,15 @@ mat-sidenav{
 }
 
 mat-card-title,
+input,
 p{
       color: #e3e3e3b3!important;
     line-height: 23px!important;
+}
+
+
+
+.mat-mdc-unelevated-button:not(:disabled){
+  background: #3f2e3f!important;
+  border: 0.1rem solid #ffffff59;
 }
