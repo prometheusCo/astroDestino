@@ -105,10 +105,15 @@ export class UserFormComponent {
       };
 
       this.saved.set(true);
-      setTimeout(() => this.saved.set(false), 2000);
-
       this.storage.setData("userData", data);
-      location.reload();
+
+      setTimeout(() => {
+
+        this.saved.set(false)
+        location.reload();
+
+      }, 1000);
+
 
     }
   }
