@@ -9,10 +9,17 @@ export class ApiService {
 
   cards: any[] = [
     {
-      title: 'Predicción Astral',
+      title: 'Enero del 2026',
       text: 'Las estrellas alinean hoy una energía renovadora para ti. Un cambio inesperado en el ámbito creativo te permitirá desbloquear potencias que tenías dormidas. Confía en tu intuición lunar.'
     },
-    // add more objects as needed
+    {
+      title: 'Semana 12 - 19',
+      text: 'Las estrellas alinean hoy una energía renovadora para ti. Un cambio inesperado en el ámbito creativo te permitirá desbloquear potencias que tenías dormidas. Confía en tu intuición lunar.'
+    },
+    {
+      title: 'Hoy lunes 12',
+      text: 'Las estrellas alinean hoy una energía renovadora para ti. Un cambio inesperado en el ámbito creativo te permitirá desbloquear potencias que tenías dormidas. Confía en tu intuición lunar.'
+    },
   ];
 
 

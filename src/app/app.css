@@ -79,7 +79,8 @@
 
 
  mat-sidenav-content{
-  overflow: hidden;
+  overflow-x: hidden;
+    overflow-y: scroll;
  }
 
 
