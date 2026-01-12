@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { UniverseComponent } from '../universe/universe.component'
+import { StorageService } from '../../services/storage/storage'
 
 interface Sign {
   id: string;
@@ -27,17 +28,33 @@ interface Sign {
 
 export class HeaderComponent implements AfterViewInit {
 
+  userData: any;
+  sign: string;
+
   @ViewChild('slider') slider!: ElementRef;
   @ViewChild('sliderContainer') container!: ElementRef;
 
-  constructor() {
+  constructor(
+
+    storage: StorageService,
+
+  ) {
+
+    this.userData = storage.getData("userData");
+    this.sign = "";
 
     effect(() => {
-      this.checkActive();
     }, { allowSignalWrites: true });
+
+    if (!this.userData)
+      return;
+
+    this.sign = this.userData.sign.toLowerCase();
+
   }
 
   isMenuOpen = false;
+  //sign = this.dates.getZodiacSign(new Date(this.userData.birthdate));
 
   private baseSigns: Sign[] = [
 
@@ -65,12 +82,6 @@ export class HeaderComponent implements AfterViewInit {
   private prevTranslate = 0;
   private readonly cardWidth = 114;
 
-
-
-  ngAfterViewInit() {
-    this.resetPosition();
-  }
-
   private getWindowWidth(): number { return window.innerWidth; }
 
   private resetPosition() {
@@ -80,7 +91,10 @@ export class HeaderComponent implements AfterViewInit {
       const initialPos = -(this.baseSigns.length * this.cardWidth) + centerOffset;
       this.currentTranslate.set(initialPos);
       this.prevTranslate = initialPos;
-    });
+
+      this.selectSignId(this.sign);
+
+    }, 700);
 
   }
 
@@ -116,11 +130,17 @@ export class HeaderComponent implements AfterViewInit {
     this.isDragging.set(false);
 
     const centerOffset = this.getWindowWidth() / 2 - 45;
-    const index = Math.round((this.currentTranslate() - centerOffset) / this.cardWidth);
-    const snapPos = index * this.cardWidth + centerOffset;
 
+    // 1. Calculamos el índice basado en dónde quedó el scroll
+    const index = Math.round((this.currentTranslate() - centerOffset) / -this.cardWidth);
+
+    // 2. Ajustamos la posición visual (Snap)
+    const snapPos = -(index * this.cardWidth) + centerOffset;
     this.currentTranslate.set(snapPos);
     this.prevTranslate = snapPos;
+
+    // 3. EJECUCIÓN: Llamamos a la selección final
+    this.selectSign(index);
   }
 
   private getPositionX(e: MouseEvent | TouchEvent): number {
@@ -129,30 +149,6 @@ export class HeaderComponent implements AfterViewInit {
 
   //
   //
-  private checkActive() {
-
-    const centerX = this.getWindowWidth() / 2;
-    const cards = this.slider?.nativeElement?.querySelectorAll('.sign-card');
-    if (!cards) return;
-
-    let closestIndex = -1;
-    let minDistance = Infinity;
-
-    cards.forEach((card: HTMLElement, index: number) => {
-      const rect = card.getBoundingClientRect();
-      const cardCenter = rect.left + rect.width / 2;
-      const distance = Math.abs(centerX - cardCenter);
-
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestIndex = index;
-      }
-    });
-
-    if (this.activeIndex() !== closestIndex) {
-      this.activeIndex.set(closestIndex);
-    }
-  }
 
   @HostListener('window:resize')
   onResize() {
@@ -160,6 +156,52 @@ export class HeaderComponent implements AfterViewInit {
   }
 
 
+  // Añade esto a tu clase HeaderComponent
+  selectSign(index: number) {
+
+    const centerOffset = this.getWindowWidth() / 2 - 45;
+    const targetTranslate = -(index * this.cardWidth) + centerOffset;
+
+    this.currentTranslate.set(targetTranslate);
+    this.prevTranslate = targetTranslate;
+
+    this.activeIndex.set(index);
+    const selectedSign = this.extendedSigns()[index];
+
+    console.log('Signo seleccionado:', selectedSign.name);
+
+  }
+
+
+
+  selectSignId(signId: number | string) { // Cambiado el nombre y tipo de parámetro
+    const signs = this.extendedSigns();
+    const baseLen = this.baseSigns.length;
+
+    // Buscamos por s.id en lugar de s.name
+    const targetIndex = signs.findIndex((s, i) =>
+      s.id === signId && i >= baseLen && i < baseLen * 2
+    );
+
+    if (targetIndex !== -1) {
+      const centerOffset = window.innerWidth / 2 - 45;
+      const targetTranslate = -(targetIndex * this.cardWidth) + centerOffset;
+
+      this.currentTranslate.set(targetTranslate);
+      this.prevTranslate = targetTranslate;
+      this.activeIndex.set(targetIndex);
+
+      console.log(`Logrado: Movido al ID ${signId} en índice ${targetIndex}`);
+      return;
+    }
+
+    console.error(`Error: No se encontró el signo con ID "${signId}"`);
+  }
+
+
+  ngAfterViewInit() {
+    this.resetPosition();
+  }
 
 }
 

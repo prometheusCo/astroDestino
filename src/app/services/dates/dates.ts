@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 
 export class DatesService {
 
-  getZodiacSign(date: Date): string {
+  getZodiacSign(date: any): string {
 
     const day = date.getDate();
     const month = date.getMonth() + 1; // Enero = 0

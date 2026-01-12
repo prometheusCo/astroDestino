@@ -24,7 +24,8 @@
         >
           @for (sign of extendedSigns(); track $index) {
             <div 
-              class="sign-card flex-shrink-0 w-[90px] flex flex-col items-center transition-all duration-[0.25s] ease-[cubic-bezier(0.4,0,0.2,1)]"
+             (click)="selectSign($index)"
+              class="sign-card  flex-shrink-0 w-[90px] flex flex-col items-center transition-all duration-[0.25s] ease-[cubic-bezier(0.4,0,0.2,1)]"
               [class.active]="activeIndex() === $index"
               [class.grayscale]="activeIndex() !== $index"
               [class.opacity-40]="activeIndex() !== $index"

@@ -9,6 +9,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { StorageService } from '../../../services/storage/storage';
+import { DatesService } from '../../../services/dates/dates'
 
 @Component({
   selector: 'app-user',
@@ -30,9 +31,17 @@ import { StorageService } from '../../../services/storage/storage';
 
 export class UserFormComponent {
 
+  userData: any;
+
   constructor(
+
     private storage: StorageService,
-  ) { }
+    private dates: DatesService,
+
+  ) {
+
+
+  }
 
   // Estado con Signals
   birthdate = signal<Date | null>(null);
@@ -90,7 +99,8 @@ export class UserFormComponent {
 
         birthdate: this.birthdate(),
         profession: this.filter(this.forbidenSet, this.profession()),
-        gender: this.gender()
+        gender: this.gender(),
+        sign: this.dates.getZodiacSign(this.birthdate()),
 
       };
 
@@ -107,7 +117,10 @@ export class UserFormComponent {
 
 
 interface UserProfile {
-  birthdate: Date | null;
+
+  birthdate: any;
   profession: string;
   gender: string;
+  sign: string;
+
 }

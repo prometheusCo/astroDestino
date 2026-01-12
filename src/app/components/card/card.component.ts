@@ -42,6 +42,7 @@ export class CardComponent {
       return;
 
     this.sign = this.dates.getZodiacSign(new Date(this.userData.birthdate));
+    this.userData.sign = this.sign;
   }
 
 
