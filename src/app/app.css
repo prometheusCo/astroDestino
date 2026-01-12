@@ -7,7 +7,7 @@
 }
 
 .bg-dark{
-  background-color:#000000ed !important
+  background-color:#1e1f20 !important;
 }
 
 .bg-purple{
@@ -79,6 +79,21 @@
  }
 
 
-span{
+h1,span{
   color: white!important;
+}
+
+mat-sidenav{
+      border-radius: 15px;
+      margin-left: -15px;
+}
+
+.shadow{
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+mat-card-title,
+p{
+      color: #e3e3e3b3!important;
+    line-height: 23px!important;
 }

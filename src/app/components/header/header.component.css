@@ -9,46 +9,7 @@
          position: relative!important;
     }
 
- 
-/* --- ESTILO BOTÓN HAMBURGUESA --- */
-.hamburger {
-  width: 40px !important;
-  height: 40px !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1001; /* Asegura que esté sobre el sidenav si es necesario */
-}
 
-.hamburger-lines {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 24px;
-  height: 18px;
-}
-
-.line {
-  display: block;
-  height: 2px;
-  width: 100%;
-  background-color: white;
-  transition: all 0.3s ease-in-out;
-}
-
-/* Animación al abrir */
-.open .line1 {
-  transform: translateY(8px) rotate(45deg);
-}
-
-.open .line2 {
-  opacity: 0;
-  transform: translateX(-10px);
-}
-
-.open .line3 {
-  transform: translateY(-8px) rotate(-45deg);
-}
 
 /* Estilos de lista menú */
 .menu-content ul {
@@ -62,13 +23,11 @@
 
 #sliderContainer[_ngcontent-ng-c3943606533] {
     margin-bottom: 25px;
-    zoom: 90% !important;
-    padding-left: 5%;
-}
 
+}
 .header-wrapper
 {
-    padding-top: 45px;
+    padding-top: 55px;
     padding-bottom: 30px;
 
 }
@@ -77,3 +36,12 @@
 #sliderContainer> .absolute{
     border-width: 0.17rem
 }
+
+#sliderContainer{
+  zoom: 90%;
+}
+
+
+#sliderContainer .will-change-transform {
+     padding-left: 5%!important;
+ }

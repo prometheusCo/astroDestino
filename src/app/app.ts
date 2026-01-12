@@ -12,7 +12,7 @@ import { BodyComponent } from './components/body/body.component'
     HeaderComponent,
     UniverseComponent,
     DrawerComponent,
-    BodyComponent
+    BodyComponent,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'

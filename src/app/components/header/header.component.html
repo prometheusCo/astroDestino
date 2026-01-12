@@ -33,7 +33,7 @@
               [class.text-white]="activeIndex() === $index"
               [class.text-gray-400]="activeIndex() !== $index"
             >
-              <svg class="w-10 h-10 mb-2 fill-none stroke-current stroke-[1.5]" viewBox="0 0 24 24">
+              <svg class="w-10 h-10 mb-2 fill-none stroke-current stroke-[1.5] shadow" viewBox="0 0 24 24">
                 <path [attr.d]="sign.path"/>
               </svg>
               <span class="mini mini-s tracking-tighter font-semibold">{{ sign.name }}</span>
