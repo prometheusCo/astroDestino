@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 
 export class StorageService {
 
-  getData(name: string): object | boolean {
+  getData(name: string): any | boolean {
 
     let r: any | boolean = false;
 

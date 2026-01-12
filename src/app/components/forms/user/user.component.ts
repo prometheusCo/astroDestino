@@ -112,6 +112,25 @@ export class UserFormComponent {
 
     }
   }
+
+  private loadUserData() {
+
+    const savedData = this.storage.getData("userData");
+
+    if (!savedData) return;
+
+    // Si la fecha viene como string del JSON, la convertimos a objeto Date
+    this.birthdate.set(new Date(savedData.birthdate || new Date()));
+
+    this.profession.set(savedData.profession || '');
+    this.gender.set(savedData.gender || '');
+
+    console.log('Datos cargados desde storage:', savedData);
+  }
+
+  ngOnInit() {
+    this.loadUserData();
+  }
 }
 
 
