@@ -26,4 +26,45 @@ export class DatesService {
     return (month === 12 && day >= 22) || (month === 1 && day <= 19) ? "Capricorn" : "";
   }
 
+
+  getMonth(date: Date | string = new Date(), lang_iso_code: string = 'es-ES'): string {
+
+    if (!date) return '';
+
+    date = typeof date === 'string' ? new Date(date) : date;
+    return new Intl.DateTimeFormat(lang_iso_code, { month: 'long' }).format(date);
+
+  }
+
+
+  getCurrentWeekRange(date: Date | string = new Date(), lang_iso_code: string = 'es-ES'): string {
+
+    const current = new Date(date);
+
+    const dayOfWeek = current.getDay();
+    const diffToMonday = current.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
+
+    const monday = new Date(current.setDate(diffToMonday));
+    const sunday = new Date(monday);
+    sunday.setDate(monday.getDate() + 6);
+
+    const options: Intl.DateTimeFormatOptions = { month: 'short', day: 'numeric' };
+
+    const from = monday.toLocaleDateString(lang_iso_code, options);
+    const to = sunday.toLocaleDateString(lang_iso_code, options);
+
+    return ` ${from} -  ${to}`;
+  }
+
+
+  getDayInfo(date: Date = new Date(), lang_iso_code: string = 'es-ES'): string {
+
+    const options: Intl.DateTimeFormatOptions = { weekday: 'long' };
+    const dayName = new Intl.DateTimeFormat(lang_iso_code, options).format(date);
+
+    const dayNumber = date.getDate();
+    return `${dayName} ${dayNumber}`;
+  }
+
+
 }

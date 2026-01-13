@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
+import { DatesService } from '../dates/dates';
 
 @Injectable({
   providedIn: 'root',
@@ -8,12 +9,17 @@ import { firstValueFrom } from 'rxjs';
 
 export class ApiService {
 
-  constructor(private http: HttpClient) { }
 
+  constructor(
+
+    private http: HttpClient,
+    private dates: DatesService,
+
+  ) { }
 
   cards: any[] = [
     {
-      title: 'Enero del 2026',
+      title: '',
       mode: 'monthly',
       text: '',
       hidden: true,
@@ -38,6 +44,10 @@ export class ApiService {
   }
 
   async getCard(mode: string, sex: string, job: string, sign: string) {
+
+    this.cards[0].title = `Mes de ${this.dates.getMonth()}`;
+    this.cards[1].title = `Semana ${this.dates.getCurrentWeekRange()}`;
+    this.cards[2].title = this.dates.getDayInfo();
 
     const baseUrl = `https://japgcv.es/portfolio/astroDestino/server/api.php?${this.getKey()}`;
 
