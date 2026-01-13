@@ -6,6 +6,8 @@ import { StorageService } from '../../services/storage/storage'
 import { DatesService } from '../../services/dates/dates';
 import { ChangeDetectorRef } from '@angular/core';
 import Swal from 'sweetalert2';
+import { Subscription } from 'rxjs';
+import { GlobalEventsService } from '../../services/events/global';
 
 @Component({
   selector: 'app-card',
@@ -20,7 +22,7 @@ import Swal from 'sweetalert2';
 
 export class CardComponent {
 
-
+  sub?: Subscription;
   cards: any[];
   userData: any;
 
@@ -29,7 +31,8 @@ export class CardComponent {
     private api: ApiService,
     private storage: StorageService,
     private dates: DatesService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private events: GlobalEventsService,
 
   ) {
 
@@ -93,9 +96,22 @@ export class CardComponent {
 
   ngOnInit() {
 
-    console.log("fillings cards...");
     setTimeout(() => { this.fillCards(); }, 700)
 
+    this.sub = this.events.events$.subscribe((e) => {
+
+      if (e?.type === 'RELOAD_USERS') {
+
+        this.fillCards();
+
+      }
+    });
+    console.log('SERVICE INSTANCE ===', this.events);
+
+  }
+
+  ngOnDestroy() {
+    this.sub?.unsubscribe();
   }
 
 }

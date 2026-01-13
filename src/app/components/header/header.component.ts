@@ -4,7 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { UniverseComponent } from '../universe/universe.component'
 import { StorageService } from '../../services/storage/storage'
-
+import { GlobalEventsService } from '../../services/events/global';
 
 
 interface Sign {
@@ -40,6 +40,7 @@ export class HeaderComponent implements AfterViewInit {
   constructor(
 
     private storage: StorageService,
+    private events: GlobalEventsService,
 
   ) {
 
@@ -89,6 +90,7 @@ export class HeaderComponent implements AfterViewInit {
   private resetPosition() {
 
     setTimeout(() => {
+
       const centerOffset = this.getWindowWidth() / 2 - 45;
       const initialPos = -(this.baseSigns.length * this.cardWidth) + centerOffset;
       this.currentTranslate.set(initialPos);
@@ -140,6 +142,11 @@ export class HeaderComponent implements AfterViewInit {
     this.prevTranslate = snapPos;
 
     this.selectSign(index);
+
+    setTimeout(() => {
+      this.events.emit({ type: 'RELOAD_USERS' });
+    }, 1700)
+
   }
 
   private getPositionX(e: MouseEvent | TouchEvent): number {
