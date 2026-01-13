@@ -6,6 +6,8 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { UserFormComponent } from '../forms/user/user.component';
 import Swal from 'sweetalert2';
 import { StorageService } from '../../services/storage/storage'
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
 
@@ -15,6 +17,8 @@ import { StorageService } from '../../services/storage/storage'
     MatSidenavModule,
     MatButtonModule,
     MatSidenav,
+    MatListModule,
+    MatIconModule,
     UserFormComponent
   ],
   templateUrl: 'drawer.component.html',
@@ -61,5 +65,10 @@ export class DrawerComponent {
 
 
   }
+
+
+  about() { }
+
+  share() { }
 
 }

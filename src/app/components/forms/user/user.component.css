@@ -137,3 +137,7 @@
     height: 65px;
     border-radius: 50%;
 }
+
+::ng-deep .mdc-list-item__primary-text{
+  color: grey!important;
+}

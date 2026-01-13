@@ -71,3 +71,19 @@ mat-sidenav{
       border-radius:0px;
       max-height: 100%!important;
 }
+
+
+::ng-deep .other mat-icon{
+      color: #262626!important;
+}
+
+.other a {
+     border-bottom: 1px solid rgb(245 245 245 / 17%);
+     border-radius: 0;
+     padding:  35px 0!important;
+
+}
+
+::ng-deep .mdc-list{
+      padding: 0 13%!important;
+}

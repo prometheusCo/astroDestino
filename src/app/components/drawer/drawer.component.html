@@ -1,7 +1,28 @@
 <mat-sidenav-container class="drawer-container" id="drawer">
 
   <mat-sidenav  #drawer mode="over" class="bg"   (closedStart)="onDrawerClosed()">
+    
     <app-user></app-user>
+
+
+    <div class="other">
+
+        <mat-nav-list>
+      
+           <a mat-list-item (click)="about()">
+             <mat-icon matListItemIcon>info</mat-icon>
+             <div matListItemTitle><span class="mini">Acerca de esta app</span></div>
+           </a>
+
+          <a mat-list-item (click)="share()">
+             <mat-icon matListItemIcon>share</mat-icon>
+             <div matListItemTitle><span class="mini">Compartir app</span></div>
+          </a>
+
+        </mat-nav-list>
+    
+      </div>
+
   </mat-sidenav>
 
   <mat-sidenav-content>
