@@ -5,6 +5,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { UniverseComponent } from '../universe/universe.component'
 import { StorageService } from '../../services/storage/storage'
 
+
+
 interface Sign {
   id: string;
   name: string;
@@ -31,12 +33,13 @@ export class HeaderComponent implements AfterViewInit {
   userData: any;
   sign: string;
 
+
   @ViewChild('slider') slider!: ElementRef;
   @ViewChild('sliderContainer') container!: ElementRef;
 
   constructor(
 
-    storage: StorageService,
+    private storage: StorageService,
 
   ) {
 
@@ -54,7 +57,6 @@ export class HeaderComponent implements AfterViewInit {
   }
 
   isMenuOpen = false;
-  //sign = this.dates.getZodiacSign(new Date(this.userData.birthdate));
 
   private baseSigns: Sign[] = [
 
@@ -131,15 +133,12 @@ export class HeaderComponent implements AfterViewInit {
 
     const centerOffset = this.getWindowWidth() / 2 - 45;
 
-    // 1. Calculamos el índice basado en dónde quedó el scroll
     const index = Math.round((this.currentTranslate() - centerOffset) / -this.cardWidth);
 
-    // 2. Ajustamos la posición visual (Snap)
     const snapPos = -(index * this.cardWidth) + centerOffset;
     this.currentTranslate.set(snapPos);
     this.prevTranslate = snapPos;
 
-    // 3. EJECUCIÓN: Llamamos a la selección final
     this.selectSign(index);
   }
 
@@ -156,7 +155,6 @@ export class HeaderComponent implements AfterViewInit {
   }
 
 
-  // Añade esto a tu clase HeaderComponent
   selectSign(index: number) {
 
     const centerOffset = this.getWindowWidth() / 2 - 45;
@@ -168,22 +166,28 @@ export class HeaderComponent implements AfterViewInit {
     this.activeIndex.set(index);
     const selectedSign = this.extendedSigns()[index];
 
-    console.log('Signo seleccionado:', selectedSign.name);
+    this.userData = this.storage.getData("userData");
+    !this.userData ? this.userData = {} : null;
+
+    this.userData.sign = selectedSign.id;
+    this.storage.setData("userData", this.userData);
+    console.log('Signo seleccionado:', selectedSign.id);
 
   }
 
 
 
-  selectSignId(signId: number | string) { // Cambiado el nombre y tipo de parámetro
+  selectSignId(signId: number | string) {
+
     const signs = this.extendedSigns();
     const baseLen = this.baseSigns.length;
 
-    // Buscamos por s.id en lugar de s.name
     const targetIndex = signs.findIndex((s, i) =>
       s.id === signId && i >= baseLen && i < baseLen * 2
     );
 
     if (targetIndex !== -1) {
+
       const centerOffset = window.innerWidth / 2 - 45;
       const targetTranslate = -(targetIndex * this.cardWidth) + centerOffset;
 
@@ -192,6 +196,8 @@ export class HeaderComponent implements AfterViewInit {
       this.activeIndex.set(targetIndex);
 
       console.log(`Logrado: Movido al ID ${signId} en índice ${targetIndex}`);
+
+
       return;
     }
 

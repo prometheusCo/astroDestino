@@ -23,7 +23,6 @@ export class CardComponent {
 
   cards: any[];
   userData: any;
-  sign: string;
 
   constructor(
 
@@ -36,13 +35,7 @@ export class CardComponent {
 
     this.userData = storage.getData("userData");
     this.cards = api.cards; console.log(this.cards);
-    this.sign = "";
 
-    if (!this.userData)
-      return;
-
-    this.sign = this.dates.getZodiacSign(new Date(this.userData.birthdate));
-    this.userData.sign = this.sign;
   }
 
 
@@ -88,7 +81,7 @@ export class CardComponent {
         card.mode,
         this.userData.gender,
         this.userData.profession,
-        this.sign
+        this.userData.sign
       );
       this.cards[index].text = text;
       this.cdr.detectChanges();
