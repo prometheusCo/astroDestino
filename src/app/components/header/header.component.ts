@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { UniverseComponent } from '../universe/universe.component'
 import { StorageService } from '../../services/storage/storage'
 import { GlobalEventsService } from '../../services/events/global';
+import { watch } from 'fs';
 
 
 interface Sign {
@@ -80,6 +81,7 @@ export class HeaderComponent implements AfterViewInit {
   currentTranslate = signal<number>(0);
   isDragging = signal<boolean>(false);
   activeIndex = signal<number>(-1);
+  watcher: any | null = null;
 
   private startX = 0;
   private prevTranslate = 0;
@@ -101,6 +103,7 @@ export class HeaderComponent implements AfterViewInit {
     }, 700);
 
   }
+
 
   dragStart(e: MouseEvent | TouchEvent) {
     this.isDragging.set(true);
@@ -133,6 +136,9 @@ export class HeaderComponent implements AfterViewInit {
     if (!this.isDragging()) return;
     this.isDragging.set(false);
 
+    clearInterval(this.watcher);
+    this.watcher = null;
+
     const centerOffset = this.getWindowWidth() / 2 - 45;
 
     const index = Math.round((this.currentTranslate() - centerOffset) / -this.cardWidth);
@@ -143,9 +149,20 @@ export class HeaderComponent implements AfterViewInit {
 
     this.selectSign(index);
 
-    setTimeout(() => {
+    if (this.watcher !== null)
+      return;
+
+    this.watcher = setInterval(() => {
+
+      if (this.isDragging())
+        return;
+
+      console.log("real drag end!");
+      clearInterval(this.watcher);
+      this.watcher = null;
       this.events.emit({ type: 'RELOAD_USERS' });
-    }, 1700)
+
+    }, 1200)
 
   }
 

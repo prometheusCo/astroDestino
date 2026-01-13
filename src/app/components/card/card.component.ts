@@ -35,10 +35,7 @@ export class CardComponent {
     private events: GlobalEventsService,
 
   ) {
-
-    this.userData = storage.getData("userData");
-    this.cards = api.cards; console.log(this.cards);
-
+    this.cards = api.cards;
   }
 
 
@@ -72,6 +69,8 @@ export class CardComponent {
 
   async fillCards() {
 
+    this.userData = this.storage.getData("userData");
+
     if (!this.userData) {
 
       setTimeout(() => { this.openForm() }, 1000)
@@ -96,15 +95,19 @@ export class CardComponent {
 
   ngOnInit() {
 
-    setTimeout(() => { this.fillCards(); }, 700)
+    setTimeout(() => { this.fillCards(); }, 500)
 
     this.sub = this.events.events$.subscribe((e) => {
 
       if (e?.type === 'RELOAD_USERS') {
 
-        this.fillCards();
+        this.cards.map((c) => { c.text = ''; return c });
+        this.cdr.detectChanges();
+
+        setTimeout(() => { this.fillCards(); }, 700)
 
       }
+
     });
     console.log('SERVICE INSTANCE ===', this.events);
 
