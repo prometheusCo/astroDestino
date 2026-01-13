@@ -4,6 +4,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenav } from '@angular/material/sidenav';
 import { UserFormComponent } from '../forms/user/user.component';
+import Swal from 'sweetalert2';
+import { StorageService } from '../../services/storage/storage'
 
 @Component({
 
@@ -24,12 +26,39 @@ export class DrawerComponent {
 
   @ViewChild('drawer') drawer!: MatSidenav;
   isMenuOpen = false;
+  userData: any;
+
+  constructor(private storage: StorageService,) {
+    this.userData = storage.getData("userData");
+
+  }
 
   toggleMenu() {
 
-    console.log(this.drawer);
     this.drawer.toggle();
     this.isMenuOpen = this.drawer.opened;
+  }
+
+  onDrawerClosed() {
+
+
+    if (!!this.userData)
+      return;
+
+    Swal.fire({
+
+      text: `Datos no introducidos!... Mueve el slider hasta dar con tu signo o haz click en el centro si ya esta seleccionado.`,
+      icon: 'warning',
+      background: 'rgb(29 26 34)',
+      iconColor: '#856404',
+      confirmButtonColor: 'green',
+      color: 'whitesmoke',
+      width: '85vw',
+      confirmButtonText: 'Vamos a ello!',
+
+    }).then((result) => { });
+
+
   }
 
 }
