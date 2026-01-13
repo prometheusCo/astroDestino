@@ -41,6 +41,7 @@ export class DrawerComponent {
 
   onDrawerClosed() {
 
+    this.userData = this.storage.getData("userData");
 
     if (!!this.userData)
       return;
@@ -54,7 +55,7 @@ export class DrawerComponent {
       confirmButtonColor: 'green',
       color: 'whitesmoke',
       width: '85vw',
-      confirmButtonText: 'Vamos a ello!',
+      confirmButtonText: 'De acuerdo',
 
     }).then((result) => { });
 

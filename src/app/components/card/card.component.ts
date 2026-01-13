@@ -43,7 +43,7 @@ export class CardComponent {
 
     Swal.fire({
 
-      text: 'Antes de que podamos predecir tu horóscopo necesitamos conecerte un poquito mejor',
+      text: 'Antes de que podamos predecir tu horóscopo necesitamos conecerte un poquito mejor :)',
       icon: 'warning',
       background: 'rgb(29 26 34)',
       iconColor: '#856404',
@@ -51,6 +51,8 @@ export class CardComponent {
       color: 'whitesmoke',
       width: '85vw',
       confirmButtonText: 'Vamos a ello!',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
 
     }).then((result) => {
 
