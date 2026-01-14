@@ -31,9 +31,8 @@ interface Sign {
 
 export class HeaderComponent implements AfterViewInit {
 
-  userData: any;
-  sign: string;
 
+  userData: any;
 
   @ViewChild('slider') slider!: ElementRef;
   @ViewChild('sliderContainer') container!: ElementRef;
@@ -44,18 +43,8 @@ export class HeaderComponent implements AfterViewInit {
     private events: GlobalEventsService,
 
   ) {
-
-    this.userData = storage.getData("userData");
-    this.sign = "";
-
     effect(() => {
     }, { allowSignalWrites: true });
-
-    if (!this.userData)
-      return;
-
-    this.sign = this.userData.sign.toLowerCase();
-
   }
 
   isMenuOpen = false;
@@ -98,7 +87,10 @@ export class HeaderComponent implements AfterViewInit {
       this.currentTranslate.set(initialPos);
       this.prevTranslate = initialPos;
 
-      this.selectSignId(this.sign);
+      this.userData = this.storage.getData("userData");
+      if (!this.userData) return;
+
+      this.selectSignId(this.userData.sign);
 
     }, 700);
 
@@ -160,7 +152,7 @@ export class HeaderComponent implements AfterViewInit {
       console.log("real drag end!");
       clearInterval(this.watcher);
       this.watcher = null;
-      this.events.emit({ type: 'RELOAD_USERS' });
+      this.events.emit({ type: 'RELOAD_CARDS' });
 
     }, 1200)
 

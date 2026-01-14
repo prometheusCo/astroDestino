@@ -2,10 +2,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
-export type GlobalEvent =
-  | { type: 'RELOAD_USERS' }
-  | { type: 'LOGOUT' }
-  | { type: 'REFRESH_DATA'; payload?: any };
+export type GlobalEvent = { type: any }
 
 @Injectable({ providedIn: 'root' })
 

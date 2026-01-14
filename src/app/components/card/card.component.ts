@@ -97,21 +97,23 @@ export class CardComponent {
 
   ngOnInit() {
 
-    setTimeout(() => { this.fillCards(); }, 500)
+    setTimeout(() => { this.fillCards(); }, 500);
 
     this.sub = this.events.events$.subscribe((e) => {
 
-      if (e?.type === 'RELOAD_USERS') {
+      console.log("triggered");
+
+      console.log(e);
+      if (e?.type === 'RELOAD_CARDS') {
+
+
 
         this.cards.map((c) => { c.text = ''; return c });
         this.cdr.detectChanges();
-
         setTimeout(() => { this.fillCards(); }, 700)
-
       }
 
     });
-    console.log('SERVICE INSTANCE ===', this.events);
 
   }
 
