@@ -24,7 +24,7 @@ App móvil construida en Angular para consultar el horóscopo de forma rápida e
 #
 
 
-# Horoscope App (Hybrid)
+# Horoscope Angular App 
 
 [Working demo (Spanish only)](https://japgcv.es/portfolio/astroDestino/demo/)
 
@@ -35,5 +35,5 @@ Mobile app built with Angular to quickly and intuitively check daily horoscope r
 - Angular
 - Tailwind CSS
 - Horoscope API
-- OpenAI API (summary + translation)
+- OpenAI API 
 - PHP
