@@ -83,7 +83,7 @@ export class CardComponent {
       if (typeof userData.birthdate === "undefined")
         return true;
 
-      if (dates.getZodiacSign(new Date(userData.birthdate)) !== userData.sign)
+      if (dates.getZodiacSign(new Date(userData.birthdate)).toLowerCase() !== userData.sign.toLowerCase())
         return true;
 
       return false;
