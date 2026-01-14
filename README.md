@@ -1,6 +1,9 @@
-# Horoscope App (Hybrid)
+# App móvil con Angular con integración de varias APIs
 
-App móvil híbrida construida con Angular y Tailwind CSS para consultar el horóscopo de forma rápida e intuitiva. Integra una API de horóscopo alojada en vercel y utiliza la API de Open AI para resumir y traducir el contenido. Proyecto diseñado con objetivo de escalado y monetización futura
+[Demo usable del proyecto](https://japgcv.es/portfolio/astroDestino/demo/)
+
+
+App móvil construida con Angular para consultar el horóscopo de forma rápida e intuitiva. Integra una API alojada en vercel que entrega el horóscopo y utiliza la API de Open AI para resumir, traducir y personalizar el contenido. Proyecto diseñado con objetivo de monetización futura.
 
 ## Tech Stack
 
