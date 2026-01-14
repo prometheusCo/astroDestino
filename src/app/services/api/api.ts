@@ -39,24 +39,13 @@ export class ApiService {
   ];
 
 
-  //
-  // This would be heavily ofuscated 'till endpoints keys are passed
-  // to a native module (JAVA)
-  // All developing keys are changed here and in endPoint!!!
-  //
-  getKey() {
-
-
-
-  }
-
   async getCard(mode: string, sex: string, job: string, sign: string) {
 
     this.cards[0].title = `Mes de ${this.dates.getMonth()} `;
     this.cards[1].title = `Semana ${this.dates.getCurrentWeekRange()} `;
     this.cards[2].title = this.dates.getDayInfo();
 
-    const baseUrl = `https://japgcv.es/portfolio/astroDestino/server/api.php?${this.getKey()}`;
+    const baseUrl = `https://japgcv.es/portfolio/astroDestino/server/api.php?`;
 
     const url =
       `${baseUrl}` +
