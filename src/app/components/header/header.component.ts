@@ -31,7 +31,12 @@ interface Sign {
 
 export class HeaderComponent implements AfterViewInit {
 
-
+  //
+  // This controls the time window used to  detect when really an user stops dragging
+  // (User can do short drags in order to get to the desired sign, and only in the end of all those shorts
+  // drags its when it sholud be considered a "real drag end")
+  //
+  dragEndTimeout: number = 1200;
   userData: any;
 
   @ViewChild('slider') slider!: ElementRef;
@@ -154,7 +159,7 @@ export class HeaderComponent implements AfterViewInit {
       this.watcher = null;
       this.events.emit({ type: 'RELOAD_CARDS' });
 
-    }, 1200)
+    }, this.dragEndTimeout)
 
   }
 
@@ -195,6 +200,7 @@ export class HeaderComponent implements AfterViewInit {
 
   selectSignId(signId: number | string) {
 
+    signId = typeof signId === "string" ? signId.toLowerCase() : signId;
     const signs = this.extendedSigns();
     const baseLen = this.baseSigns.length;
 

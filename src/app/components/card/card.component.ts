@@ -74,9 +74,28 @@ export class CardComponent {
     this.userData = this.storage.getData("userData");
 
     if (!this.userData) {
-
       setTimeout(() => { this.openForm() }, 1000)
       return;
+    }
+
+    function mustBeAnonimousCall(userData: any, dates: any): boolean {
+
+      if (typeof userData.birthdate === "undefined")
+        return true;
+
+      if (dates.getZodiacSign(new Date(userData.birthdate)) !== userData.sign)
+        return true;
+
+      return false;
+    }
+
+
+    if (mustBeAnonimousCall(this.userData, this.dates)) {
+
+      console.log("user data not set or user is searching for another sign...")
+      this.userData.gender = "null";
+      this.userData.profession = "null";
+
     }
 
     for (const [index, card] of this.cards.entries()) {
@@ -101,12 +120,7 @@ export class CardComponent {
 
     this.sub = this.events.events$.subscribe((e) => {
 
-      console.log("triggered");
-
-      console.log(e);
       if (e?.type === 'RELOAD_CARDS') {
-
-
 
         this.cards.map((c) => { c.text = ''; return c });
         this.cdr.detectChanges();
