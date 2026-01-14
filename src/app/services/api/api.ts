@@ -25,13 +25,13 @@ export class ApiService {
       hidden: true,
     },
     {
-      title: 'Semana 12 - 19',
+      title: '',
       mode: 'weekly',
       text: '',
       hidden: true,
     },
     {
-      title: 'Hoy lunes 12',
+      title: '',
       mode: 'daily',
       text: '',
       hidden: true,

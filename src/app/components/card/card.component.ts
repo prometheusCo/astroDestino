@@ -108,6 +108,8 @@ export class CardComponent {
       if (!!cacheCheck) {
 
         console.log(`found cache for ${card.mode}`);
+
+        this.cards[index].title = this.cache.cacheMangement(card, "get", this.userData.sign).title;
         this.cards[index].text = this.cache.cacheMangement(card, "get", this.userData.sign).text;
         this.cdr.detectChanges();
         continue;
