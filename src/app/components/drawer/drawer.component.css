@@ -61,7 +61,7 @@
 #menuBtn{
     padding: 10px!important;
     background-color: #302c38!important;
-    position: fixed!important;
+    position: absolute!important;
     z-index: 999999;
 }
 
