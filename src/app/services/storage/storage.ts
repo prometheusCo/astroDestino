@@ -19,8 +19,14 @@ export class StorageService {
     return r;
   }
 
-  setData(name: string, data: object): void {
-    localStorage.setItem(name, JSON.stringify(data));
+  setData(name: string, data: any): void {
+
+    try {
+      localStorage.setItem(name, JSON.stringify(data));
+    } catch (e) {
+      localStorage.setItem(name, data);
+    }
+
   }
 
 }

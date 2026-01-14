@@ -8,6 +8,8 @@ import { ChangeDetectorRef } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Subscription } from 'rxjs';
 import { GlobalEventsService } from '../../services/events/global';
+import { CacheService } from '../../services/cache/cache'
+
 
 @Component({
   selector: 'app-card',
@@ -33,6 +35,7 @@ export class CardComponent {
     private dates: DatesService,
     private cdr: ChangeDetectorRef,
     private events: GlobalEventsService,
+    private cache: CacheService,
 
   ) {
     this.cards = api.cards;
@@ -100,15 +103,28 @@ export class CardComponent {
 
     for (const [index, card] of this.cards.entries()) {
 
+      let cacheCheck = this.cache.cacheMangement(card, "check", this.userData.sign);
+
+      if (!!cacheCheck) {
+
+        console.log(`found cache for ${card.mode}`);
+        this.cards[index].text = this.cache.cacheMangement(card, "get", this.userData.sign).text;
+        this.cdr.detectChanges();
+        continue;
+      }
+
+      console.log("no cache found makin api call");
       let text = await this.api.getCard(
         card.mode,
         this.userData.gender,
         this.userData.profession,
         this.userData.sign
       );
+
       this.cards[index].text = text;
       this.cdr.detectChanges();
 
+      this.cache.cacheMangement(this.cards[index], "update", this.userData.sign);
     }
 
   }
