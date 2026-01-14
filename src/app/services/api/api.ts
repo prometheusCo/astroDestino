@@ -39,14 +39,21 @@ export class ApiService {
   ];
 
 
+  //
+  // This would be heavily ofuscated 'till endpoints keys are passed
+  // to a native module (JAVA)
+  // All developing keys are changed here and in endPoint!!!
+  //
   getKey() {
-    return "key=sdfjo0s0orjaw9phiads7f6d6f76aq3rufcwf4y7&playStoreKey=sajfdppadajsd3254jtjfv144sadasfge55f"
+
+
+
   }
 
   async getCard(mode: string, sex: string, job: string, sign: string) {
 
-    this.cards[0].title = `Mes de ${this.dates.getMonth()}`;
-    this.cards[1].title = `Semana ${this.dates.getCurrentWeekRange()}`;
+    this.cards[0].title = `Mes de ${this.dates.getMonth()} `;
+    this.cards[1].title = `Semana ${this.dates.getCurrentWeekRange()} `;
     this.cards[2].title = this.dates.getDayInfo();
 
     const baseUrl = `https://japgcv.es/portfolio/astroDestino/server/api.php?${this.getKey()}`;
