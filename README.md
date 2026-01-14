@@ -15,10 +15,6 @@ App móvil construida en Angular para consultar el horóscopo de forma rápida e
 - PHP
 
 
-
----
-#
-#
 #
 #
 #
