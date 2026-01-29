@@ -7,7 +7,7 @@ App móvil híbrida construida con Angular y Tailwind CSS para consultar el hor�
 - Angular
 - Tailwind CSS
 - API Horóscopo
-- OpenAI API (summary + translation)
+- OpenAI API (Traducción y personalización)
 
 ---
 
