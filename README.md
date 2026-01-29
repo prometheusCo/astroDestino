@@ -1,4 +1,4 @@
-# Horoscopo minimalista
+# Horóscopo minimalista
 
 App móvil híbrida construida con Angular y Tailwind CSS para consultar el horóscopo de forma rápida e intuitiva. Integra una API de horóscopo alojada en vercel y utiliza la API de Open AI para resumir y traducir el contenido. Proyecto diseñado con objetivo de escalado y monetización futura
 
